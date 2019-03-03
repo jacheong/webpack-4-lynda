@@ -1,12 +1,30 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 module.exports = {
     entry: "./src/index.js",
     output: {
-        filename: "main.js",
-        path: path.resolve(__dirname, "dist"),
-        publicPath: "/"
+        filename: "[name]-bundle.js",
+        path: path.resolve(__dirname, "dist")
     },
+    optimization: {
+        splitChunks: {
+            chunks: "all"
+        },
+        minimizer: [
+            new UglifyJsPlugin(),
+        ]
+    },
+    plugins: [
+        new HtmlWebpackPlugin(
+            {
+                title: 'Custom template',
+                template: 'index.html'
+            }
+        ),
+    ],
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         port: 9000

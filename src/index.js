@@ -1,14 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import About from './about';
+import Contact from './contact';
 import './style.css';
 
 const Greeting = () => {
-    return(
+
+    const createMarkup = () => {
+        return (
+            <div>
+                <Greeting />
+                <About />
+                <Contact />
+            </div>
+        );
+    };
+
+
+    return (
         <div>
             <h1>Hello Nerds</h1>
-            <div id="image"></div>
+            {createMarkup()}
         </div>
     );
+
 };
 
 ReactDOM.render(
